@@ -12,11 +12,9 @@ import android.widget.ImageView;
 
 public class ProfileModify extends AppCompatActivity {
 
-    private EditText et_nickname, et_name, et_major, et_grade, et_stuNum;
-    private String str_nickname;
+    private EditText et_name, et_major, et_stuNum;
     private String str_name;
     private String str_major;
-    private String str_grade;
     private String str_stuNum;
     private Button btn_save;
     private static final int IMAGE_PICK_CODE = 1000;
@@ -37,28 +35,21 @@ public class ProfileModify extends AppCompatActivity {
             }
         });
 
-        et_nickname = findViewById(R.id.et_nickname);
         et_name = findViewById(R.id.et_name);
         et_major = findViewById(R.id.et_major);
-        et_grade = findViewById(R.id.et_grade);
         et_stuNum = findViewById(R.id.et_stuNum);
         btn_save = findViewById(R.id.btn_save);
 
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                str_nickname = et_nickname.getText().toString();
                 str_name = et_name.getText().toString();
                 str_major = et_major.getText().toString();
-                str_grade = et_grade.getText().toString();
                 str_stuNum = et_stuNum.getText().toString();
 
                 Intent intent = new Intent(ProfileModify.this , MainActivity.class);
-                intent.putExtra("str_nickname",str_nickname);
                 intent.putExtra("str_name",str_name);
                 intent.putExtra("str_major",str_major);
-                intent.putExtra("str_grade",str_grade);
                 intent.putExtra("str_stuNum",str_stuNum);
 
                 if (selctedImageUri != null) {
@@ -66,10 +57,11 @@ public class ProfileModify extends AppCompatActivity {
                 }
 
                 startActivity(intent);
-
+                finish();
             }
         });
-    }
+
+    } // ✅ onCreate() 닫는 중괄호 추가됨!
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
